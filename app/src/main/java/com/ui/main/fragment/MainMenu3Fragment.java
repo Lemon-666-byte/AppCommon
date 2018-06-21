@@ -26,7 +26,7 @@ public class MainMenu3Fragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.main_frgment_menu3;
+        return R.layout.main_fragment_menu3;
     }
 
     @Override

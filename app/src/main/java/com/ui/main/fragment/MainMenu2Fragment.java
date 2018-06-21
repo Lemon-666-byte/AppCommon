@@ -55,7 +55,7 @@ public class MainMenu2Fragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.main_frgment_menu2;
+        return R.layout.main_fragment_menu2;
     }
 
     @Override
