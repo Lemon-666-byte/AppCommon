@@ -1,0 +1,5 @@
+<resources>
+
+    <dimen name="header_height">63dp</dimen>
+    <dimen name="header_padding">23dp</dimen>
+</resources>

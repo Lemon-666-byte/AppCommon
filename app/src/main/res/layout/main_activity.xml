@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/view_main_title"
+        android:visibility="gone" />
+
+    <FrameLayout
+        android:id="@+id/flContent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimens_0dp"
+        android:layout_weight="1" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimens_0.5dp"
+        android:background="@color/themeBg" />
+
+    <RadioGroup
+        android:id="@+id/tab"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimens_50dp"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rbMenu1"
+            style="@style/MainTab"
+            android:checked="true"
+            android:drawableTop="@drawable/main_menu1"
+            android:text="菜单一" />
+
+        <RadioButton
+            android:id="@+id/rbMenu2"
+            style="@style/MainTab"
+            android:drawableTop="@drawable/main_menu2"
+            android:text="菜单二" />
+
+        <RadioButton
+            android:id="@+id/rbMenu3"
+            style="@style/MainTab"
+            android:drawableTop="@drawable/main_menu3"
+            android:text="菜单三" />
+
+    </RadioGroup>
+
+</LinearLayout>

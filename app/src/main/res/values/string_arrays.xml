@@ -1,0 +1,7 @@
+<resources>
+    <!-- 是否钢圈 -->
+    <string-array name="carIsAluminum">
+        <item>否</item>
+        <item>是</item>
+    </string-array>
+</resources>

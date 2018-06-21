@@ -1,0 +1,141 @@
+apply plugin: 'com.android.application'
+
+android {
+
+    compileSdkVersion buildv.compile_sdk
+    buildToolsVersion buildv.build_tools
+
+    File propFile = file('../config.properties')
+    if (propFile.exists()) {
+        Properties props = new Properties()
+        props.load(new InputStreamReader(new FileInputStream(propFile), "utf-8"))
+
+        defaultConfig {
+            applicationId "com.hxky.common"
+            minSdkVersion buildv.min_sdk
+            targetSdkVersion buildv.target_sdk
+            versionCode Integer.parseInt(props["VERSION_CODE"])
+            versionName props['VERSION_NAME']
+            ndk {
+                //选择要添加的对应cpu类型的.so库。
+//                abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a', 'x86', 'x86_64', 'mips', 'mips64'
+                abiFilters 'armeabi'
+            }
+            manifestPlaceholders = [
+                    JPUSH_PKGNAME: defaultConfig.applicationId,
+                    JPUSH_APPKEY : props['JPUSH_APPKEY'], //JPush上注册的包名对应的appkey.
+                    JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+            ]
+            buildConfigField "String", "HOST", props["HOST_DEBUG"]
+            buildConfigField "String", "BUGLY_ID", props["BUGLY_ID"]
+        }
+        signingConfigs {
+            debug {
+                storeFile file(props['STORE_FILE'])
+                storePassword props['STORE_PASSWORD']
+                keyAlias props['KEY_ALIAS']
+                keyPassword props['KEY_PASSWORD']
+            }
+            release {
+                storeFile file(props['STORE_FILE'])
+                storePassword props['STORE_PASSWORD']
+                keyAlias props['KEY_ALIAS']
+                keyPassword props['KEY_PASSWORD']
+            }
+        }
+
+        buildTypes {
+            debug {
+                resValue "string", "app_name", props["DEBUG_APP_NAME"]   // 设置默认的app_name
+                buildConfigField "String", "HOST", props["HOST_DEBUG"]
+                buildConfigField "boolean", "LOG_DEBUG", "true"
+                minifyEnabled false
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                signingConfig signingConfigs.debug
+            }
+            release {
+                resValue "string", "app_name", props["APP_NAME"]   // 设置默认的app_name
+                buildConfigField "String", "HOST", props["HOST_RELEASE"]
+                buildConfigField "boolean", "LOG_DEBUG", "false"
+                minifyEnabled true
+                shrinkResources true
+                zipAlignEnabled true
+                jniDebuggable false
+                renderscriptDebuggable false
+                debuggable false
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                signingConfig signingConfigs.release
+            }
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                def fileName = outputFile.name.replace(".apk", "-Common-${defaultConfig.versionCode}-${defaultConfig.versionName}-${releaseTime()}.apk")
+                outputFileName = fileName
+            }
+        }
+    }
+
+}
+/**
+ * @return 打包时间
+ */
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "com.android.support:appcompat-v7:$depv.support_version"
+    implementation "com.android.support:recyclerview-v7:$depv.support_version"
+    implementation "com.squareup.okhttp3:okhttp:$depv.okhttp"
+    implementation "com.google.code.gson:gson:$depv.gson"
+
+    //rx
+    implementation "io.reactivex.rxjava2:rxjava:$depv.rx_java"
+    implementation "io.reactivex.rxjava2:rxandroid:$depv.rx_android"
+    // Android组件库，里面定义了例如RxAppCompatActivity、RxFragment之类的Android组件 (内部引用了基础库和Android库，如果使用此库则无需再重复引用)
+    implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.1'
+
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:$depv.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$depv.retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$depv.retrofit"
+
+//    implementation 'com.github.bumptech.glide:okhttp-integration:1.4.0@aar'
+    implementation "com.github.bumptech.glide:glide:$depv.glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$depv.glide"
+
+    //工具类
+    implementation "com.blankj:utilcode:$depv.utilcode"
+    //注解框架
+    implementation "com.jakewharton:butterknife:$depv.butterknife"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$depv.butterknife"
+
+    // BaseRecyclerViewAdapterHelper 2.9.40
+    implementation "com.github.CymChad:BaseRecyclerViewAdapterHelper:$depv.base_adapter"
+    //刷新 layout
+    implementation "com.refresh:SmartRefreshLayout:$depv.refresh_layout"
+    //极光推送 3.1.1
+    implementation "cn.jiguang.sdk:jpush:$depv.jpush"
+    // JPush jcore 1.1.9
+    implementation "cn.jiguang.sdk:jcore:$depv.jpush_jcore"
+    implementation "me.yokeyword:fragmentation:1.3.3"
+    //查看大图
+    implementation 'com.github.chrisbanes:PhotoView:latest.release'
+    // 腾讯bug 统计
+    implementation 'com.tencent.bugly:crashreport:latest.release'
+
+//    implementation 'cn.bingoogolapple:bga-badgeview-api:1.1.7'
+//    annotationProcessor "cn.bingoogolapple:bga-badgeview-compiler:1.1.7"
+
+//    implementation "com.contrarywind:Android-PickerView:$depv.PickerView"
+
+//    内存检测 工具
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+
+}
