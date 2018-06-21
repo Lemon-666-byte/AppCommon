@@ -30,7 +30,6 @@
     <dimen name="dimens_50dp">50dp</dimen>
 
     <dimen name="header_height">40dp</dimen>
-    <dimen name="header_padding">0dp</dimen>
     <dimen name="button_height">38dp</dimen>
 
 
