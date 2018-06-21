@@ -35,13 +35,10 @@ public class RetrofitUtils {
             synchronized (RetrofitUtils.class) {
                 Cache cache = new Cache(new File(App.getAppContext().getCacheDir(), "HttpCache"), 1024 * 1024 * 100);
                 if (mOkHttpClient == null) {
-                    long CONNECT_TIMEOUT = 60L;
-                    long READ_TIMEOUT = 10L;
-                    long WRITE_TIMEOUT = 10L;
                     mOkHttpClient = new OkHttpClient.Builder().cache(cache)
-                            .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
-                            .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
-                            .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
+                            .connectTimeout(NetConfig.Net.CONNECT_TIMEOUT, TimeUnit.SECONDS)
+                            .readTimeout(NetConfig.Net.READ_TIMEOUT, TimeUnit.SECONDS)
+                            .writeTimeout(NetConfig.Net.WRITE_TIMEOUT, TimeUnit.SECONDS)
                             .addInterceptor(new LoggingInterceptor())
                             .addInterceptor(new HttpHeaderInterceptor())
                             .addNetworkInterceptor(new HttpCacheInterceptor())
