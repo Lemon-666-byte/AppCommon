@@ -11,8 +11,6 @@ import com.hxky.common.BuildConfig;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.utils.LogUtils;
 
-import cn.jpush.android.api.JPushInterface;
-
 /**
  * Application
  *
@@ -27,7 +25,6 @@ public class App extends Application {
         super.onCreate();
         mInstance = this;
         Utils.init(this);
-        JPushInterface.init(this);
         /* Bugly SDK初始化
          * 参数1：上下文对象
          * 参数2：APPID，平台注册时得到,注意替换成你的appId

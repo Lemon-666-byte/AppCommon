@@ -32,10 +32,6 @@
     <!-- 蓝牙-->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <!-- Required -->
-    <permission
-        android:name="${applicationId}.permission.JPUSH_MESSAGE"
-        android:protectionLevel="signature" />
 
     <supports-screens android:anyDensity="true" />
 
@@ -54,32 +50,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- 极光推送 -->
-        <service
-            android:name="cn.jpush.android.service.PushService"
-            android:process=":multiprocess"
-            tools:node="replace" />
-
-        <service android:name="com.utils.jpush.BackgroundService" />
-
-        <receiver android:name="com.utils.jpush.ServiceStarter" />
-        <!--&lt;!&ndash; since 3.1.0 Required SDK 核心功能&ndash;&gt;-->
-        <!-- User defined.  For test only  用户自定义的广播接收器-->
-        <receiver
-            android:name="com.utils.jpush.MyReceiver"
-            android:enabled="true"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="cn.jpush.android.intent.REGISTRATION" /> <!--Required  用户注册SDK的intent-->
-                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> <!--Required  用户接收SDK消息的intent-->
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!--Required  用户接收SDK通知栏信息的intent-->
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!--Required  用户打开自定义通知栏的intent-->
-                <action android:name="cn.jpush.android.intent.ACTION_RICHPUSH_CALLBACK" /> <!--Optional 用户接受Rich Push Javascript 回调函数的intent-->
-                <action android:name="cn.jpush.android.intent.CONNECTION" /><!-- 接收网络变化 连接/断开 since 1.6.3 -->
-                <category android:name="${applicationId}" />
-            </intent-filter>
-        </receiver>
 
         <activity
             android:name="com.ui.main.activity.LoginActivity"
@@ -104,7 +74,7 @@
             android:name="com.ui.main.photobrowse.BasePhotoViewActivity"
             android:label="查看大图"
             android:screenOrientation="portrait"
-            android:theme="@style/AppNoTitleTheme" />
+            android:theme="@style/Theme.NoTitleBarTheme" />
 
         <activity
             android:name="com.ui.main.activity.BaseWebViewActivity"

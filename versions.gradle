@@ -9,14 +9,8 @@ def depv = [:]
 depv.support_version = '27.1.1'
 depv.okhttp = '3.10.0'
 depv.gson = '2.8.2'
-
 depv.glide = '4.7.1'
-
 depv.butterknife = '8.8.1'
-
-depv.jpush = '3.1.1'
-depv.jpush_jcore = '1.1.9'
-
 depv.base_adapter = '2.9.40'
 depv.utilcode = '1.16.4'
 depv.retrofit = '2.4.0'
@@ -24,6 +18,8 @@ depv.refresh_layout = '0.0.1'
 depv.rx_java = '2.1.12'
 depv.rx_android = '2.0.2'
 
+//depv.jpush = '3.1.1'
+//depv.jpush_jcore = '1.1.9'
 //////////////////用于编译定义的版本//////////////////
 def buildv = [:]
 buildv.min_sdk = 15//修改需谨慎
@@ -34,3 +30,7 @@ buildv.gradle_tools = "3.1.3"//gradle build tools
 
 ext.depv = depv
 ext.buildv = buildv
+
+
+
+

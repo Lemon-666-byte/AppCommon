@@ -18,22 +18,15 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.hxky.common.R;
 import com.net.DefaultObserver;
 import com.net.RetrofitUtils;
-import com.net.bean.Result;
-import com.ui.main.bean.CarItem;
 import com.ui.main.bean.User;
 import com.utils.RxSchedulers;
 import com.utils.UploadMyAppUtils;
 import com.utils.biz.Biz;
-import com.utils.jpush.JPushSettingUtils;
 import com.widget.ClearEditText;
 
-import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import static com.utils.EnterPagerUtils.enterPage;
 
@@ -93,7 +86,6 @@ public class LoginActivity extends BaseActivity {
                         Biz.getInstance().setUserName(user.getUserName());
                         Biz.getInstance().setUserAccountName(userName);
                         Biz.getInstance().setPassword(passWord);
-                        JPushSettingUtils.getInstance().setAlias(user.getSessionKey().replaceAll("-", "_"));
                         enterPage(MainActivity.class);
                         finish();
                     }
