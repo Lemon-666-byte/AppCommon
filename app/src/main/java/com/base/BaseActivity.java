@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.constant.Config;
 import com.blankj.utilcode.util.KeyboardUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -84,6 +85,7 @@ public abstract class BaseActivity<T extends BaseContract.BasePresenter> extends
             mCommonTitle.setTitle(this.getTitle().toString());
         }
         unbinder = ButterKnife.bind(this);
+        ARouter.getInstance().inject(this);
     }
 
     @Override

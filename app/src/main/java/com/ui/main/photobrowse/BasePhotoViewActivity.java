@@ -7,13 +7,17 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.base.BaseActivity;
 import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.constant.Config;
+import com.constant.PathConfig;
 import com.hxky.common.R;
 import com.ui.main.adapter.PhotoViewAdapter;
 import com.ui.main.bean.UploadPicture;
+import com.utils.LogUtils;
 import com.widget.HackyViewPager;
 
 import java.util.ArrayList;
@@ -24,6 +28,7 @@ import butterknife.BindView;
 /**
  * @Description: 查看大图
  */
+@Route(path = PathConfig.BasePhotoViewActivity)
 public class BasePhotoViewActivity extends BaseActivity {
     /**
      * 查看大图
@@ -58,24 +63,22 @@ public class BasePhotoViewActivity extends BaseActivity {
     @Override
     public void setData(Bundle bundle) {
         if (bundle != null) {
-            if (bundle.containsKey(Config.Extras.pictureList))
-                pictureLists = (List<UploadPicture>) bundle.getSerializable(Config.Extras.pictureList);
+            pictureLists = (List<UploadPicture>) bundle.getSerializable(Config.Extras.pictureList);
             pagerPosition = bundle.getInt(Config.Extras.position, 0);
-
-            if (pictureLists == null) {
-                ToastUtils.showShort("无法查看大图");
-                finish();
-            }
-            if (StringUtils.isEmpty(pictureLists.get(pagerPosition).getPhotoName())) {
-                tvTitle.setText((pagerPosition + 1) + "/" + (pictureLists.size()));
-            } else {
-                tvTitle.setText(pictureLists.get(pagerPosition).getPhotoName() + " " + (pagerPosition + 1) + "/" + (pictureLists.size()));
-            }
-            List<Fragment> fragments = createFragments();
-            PhotoViewAdapter photoViewAdapter = new PhotoViewAdapter(getSupportFragmentManager(), fragments);
-            viewPager.setAdapter(photoViewAdapter);
-            viewPager.setCurrentItem(pagerPosition);
         }
+        if (pictureLists == null) {
+            ToastUtils.showShort("无法查看大图");
+            return;
+        }
+        if (StringUtils.isEmpty(pictureLists.get(pagerPosition).getPhotoName())) {
+            tvTitle.setText((pagerPosition + 1) + "/" + (pictureLists.size()));
+        } else {
+            tvTitle.setText(pictureLists.get(pagerPosition).getPhotoName() + " " + (pagerPosition + 1) + "/" + (pictureLists.size()));
+        }
+        List<Fragment> fragments = createFragments();
+        PhotoViewAdapter photoViewAdapter = new PhotoViewAdapter(getSupportFragmentManager(), fragments);
+        viewPager.setAdapter(photoViewAdapter);
+        viewPager.setCurrentItem(pagerPosition);
     }
 
     @Override
@@ -127,5 +130,4 @@ public class BasePhotoViewActivity extends BaseActivity {
         }
         return fragments;
     }
-
 }

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.CrashUtils;
 import com.blankj.utilcode.util.Utils;
@@ -25,6 +26,12 @@ public class App extends Application {
         super.onCreate();
         mInstance = this;
         Utils.init(this);
+        if (BuildConfig.LOG_DEBUG) {    // 这两行必须写在init之前，否则这些配置在init过程中将无效
+            ARouter.openLog();          // 打印日志
+            ARouter.openDebug();        // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+        }
+        ARouter.init(this); // 尽可能早，推荐在Application中初始化
+
         /* Bugly SDK初始化
          * 参数1：上下文对象
          * 参数2：APPID，平台注册时得到,注意替换成你的appId

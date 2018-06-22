@@ -6,15 +6,15 @@ import android.view.animation.Animation;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.base.BaseActivity;
 import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.StringUtils;
+import com.constant.PathConfig;
 import com.hxky.common.R;
 import com.utils.biz.Biz;
 
 import butterknife.BindView;
-
-import static com.utils.EnterPagerUtils.enterPage;
 
 /**
  * 引导页面
@@ -63,9 +63,9 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 if (StringUtils.isEmpty(Biz.getInstance().getSessionKey())) {
-                    enterPage(LoginActivity.class);
+                    ARouter.getInstance().build(PathConfig.LoginActivity).navigation();
                 } else {
-                    enterPage(MainActivity.class);
+                    ARouter.getInstance().build(PathConfig.MainActivity).navigation();
                 }
                 finish();
             }

@@ -10,11 +10,14 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.base.BaseActivity;
 import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.KeyboardUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.constant.PathConfig;
 import com.hxky.common.R;
 import com.net.DefaultObserver;
 import com.net.RetrofitUtils;
@@ -28,11 +31,10 @@ import java.util.Map;
 
 import butterknife.BindView;
 
-import static com.utils.EnterPagerUtils.enterPage;
-
 /**
  * 登陆
  */
+@Route(path = PathConfig.LoginActivity)
 public class LoginActivity extends BaseActivity {
 
     @BindView(R.id.etUserName)
@@ -86,7 +88,7 @@ public class LoginActivity extends BaseActivity {
                         Biz.getInstance().setUserName(user.getUserName());
                         Biz.getInstance().setUserAccountName(userName);
                         Biz.getInstance().setPassword(passWord);
-                        enterPage(MainActivity.class);
+                        ARouter.getInstance().build(PathConfig.MainActivity).navigation();
                         finish();
                     }
 

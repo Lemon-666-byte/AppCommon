@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.NetworkUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.constant.LoadType;
@@ -57,6 +58,7 @@ public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mDelegate.onCreate(savedInstanceState);
+        ARouter.getInstance().inject(this);
         initInjector();
         attachView();
         if (!NetworkUtils.isConnected()) showNoNet();
