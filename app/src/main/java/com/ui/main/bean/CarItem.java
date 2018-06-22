@@ -19,9 +19,19 @@ public class CarItem {
     private String Phone;
     private String Quantity;
     private String LicensePlate;
+    private String LicencePlateColor;
     private String CarModel;
     private String Locality;
+    private String CarStyle;
     private int SourceState;
+
+    public String getLicencePlateColor() {
+        return LicencePlateColor;
+    }
+
+    public void setLicencePlateColor(String licencePlateColor) {
+        LicencePlateColor = licencePlateColor;
+    }
 
     public int getID() {
         return ID;
@@ -85,6 +95,14 @@ public class CarItem {
 
     public void setSourceState(int SourceState) {
         this.SourceState = SourceState;
+    }
+
+    public String getCarStyle() {
+        return CarStyle;
+    }
+
+    public void setCarStyle(String carStyle) {
+        CarStyle = carStyle;
     }
 
     @Override

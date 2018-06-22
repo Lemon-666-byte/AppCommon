@@ -165,8 +165,8 @@ public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends
                 baseQuickAdapter.loadMoreFail();
                 break;
         }
-        if (list == null || list.isEmpty() || list.size() < NetConfig.PageSize.NORMAL) {
-            baseQuickAdapter.loadMoreEnd(false);
+        if (list == null || list.isEmpty() || list.size() < NetConfig.PageSize.SMALL) {
+            baseQuickAdapter.loadMoreEnd();
         } else {
             baseQuickAdapter.loadMoreComplete();
         }

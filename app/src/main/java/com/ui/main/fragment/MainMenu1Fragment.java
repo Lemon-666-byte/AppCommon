@@ -9,12 +9,15 @@ import android.view.View;
 import com.base.BaseFragment;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.constant.LoadType;
+import com.constant.NetConfig;
 import com.hxky.common.R;
 import com.net.DefaultObserver;
 import com.net.RequestUtils;
 import com.net.RetrofitUtils;
 import com.refreshview.SmartRefreshLayout;
 import com.refreshview.api.RefreshLayout;
+import com.refreshview.listener.OnRefreshListener;
 import com.refreshview.listener.OnRefreshLoadMoreListener;
 import com.ui.main.adapter.ArticleAdapter;
 import com.ui.main.bean.CarItem;
@@ -37,6 +40,7 @@ public class MainMenu1Fragment extends BaseFragment {
     SmartRefreshLayout refreshLayout;
 
     private ArticleAdapter mArticleAdapter;
+    private int pageIndex = 1;
 
     public static MainMenu1Fragment newInstance() {
         return new MainMenu1Fragment();
@@ -64,31 +68,36 @@ public class MainMenu1Fragment extends BaseFragment {
     public void setData(Bundle bundle) {
         refreshLayout.autoRefresh();
         mArticleAdapter = new ArticleAdapter();
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rvArticle.setLayoutManager(linearLayoutManager);
         rvArticle.setAdapter(mArticleAdapter);
-
     }
 
     private void loadData() {
         Map<String, Object> params = RequestUtils.getParams();
         params.put("IsMyself", 0);
-        params.put("PageIndex", 1);
-        params.put("PageSize", 10);
+        params.put("PageIndex", pageIndex);
+        params.put("PageSize", NetConfig.PageSize.SMALL);
+        params.put("Type", 1);
         params.put("SearchCode", "");
         RetrofitUtils.getInstance().getCarSourceList(params)
+//        RetrofitUtils.getInstance().getHaveCarList(params)
                 .compose(RxSchedulers.<List<CarItem>>applySchedulers())
+                .compose(this.<List<CarItem>>bindToLifecycle())
                 .subscribe(new DefaultObserver<List<CarItem>>() {
                     @Override
                     public void onSuccess(List<CarItem> response) {
-                        finishRefresh();
-                        mArticleAdapter.setNewData(response);
+                        int loadType = pageIndex == 1 ? LoadType.TYPE_REFRESH_SUCCESS : LoadType.TYPE_LOAD_MORE_SUCCESS;
+                        setLoadDataResult(mArticleAdapter, refreshLayout, response, loadType);
+                        pageIndex++;
                     }
 
                     @Override
                     public void onFail(Throwable e) {
-                        finishRefresh();
+                        int loadType = pageIndex == 1 ? LoadType.TYPE_REFRESH_ERROR : LoadType.TYPE_LOAD_MORE_ERROR;
+                        setLoadDataResult(mArticleAdapter, refreshLayout, null, loadType);
                     }
                 });
 
@@ -97,17 +106,19 @@ public class MainMenu1Fragment extends BaseFragment {
 
     @Override
     public void addListeners() {
-        refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
-            @Override
-            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                finishRefresh();
-            }
-
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                pageIndex = 1;
                 loadData();
             }
         });
+        mArticleAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+            @Override
+            public void onLoadMoreRequested() {
+                loadData();
+            }
+        }, rvArticle);
         mArticleAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {

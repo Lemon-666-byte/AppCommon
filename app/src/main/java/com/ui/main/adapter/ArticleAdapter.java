@@ -18,7 +18,8 @@ public class ArticleAdapter extends BaseQuickAdapter<CarItem, BaseViewHolder> {
 
     @Override
     protected void convert(BaseViewHolder helper, CarItem item) {
-        helper.setText(R.id.tv_name, item.getLicensePlate());
+        helper.setText(R.id.tvLicencePlateColor, helper.getAdapterPosition() + "<-->" + item.getLicencePlateColor());
+//        helper.setText(R.id.tvCarStyle, helper.getAdapterPosition() + "<-->" + item.getCarStyle());
     }
 
 }

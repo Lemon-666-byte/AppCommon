@@ -27,5 +27,8 @@ public interface ApiService {
     @POST("api/CarSource/CarSourceList")
     Observable<List<CarItem>> getCarSourceList(@Body Map<String, Object> params);
 
+    @POST("api/Car/HaveCarList")
+    Observable<List<CarItem>> getHaveCarList(@Body Map<String, Object> params);
+
 
 }
