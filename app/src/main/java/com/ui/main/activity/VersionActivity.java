@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.constant.NetConfig;
 import com.base.BaseActivity;
-import com.hxky.common.R;
+import com.common.R;
 import com.ui.main.bean.RespUpdate;
 import com.utils.GsonUtils;
 

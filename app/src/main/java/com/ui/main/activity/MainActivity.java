@@ -6,11 +6,10 @@ import android.support.annotation.IdRes;
 import android.widget.RadioGroup;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.base.BaseActivity;
 import com.blankj.utilcode.util.ToastUtils;
+import com.common.R;
 import com.constant.PathConfig;
-import com.hxky.common.R;
 import com.ui.main.fragment.MainMenu1Fragment;
 import com.ui.main.fragment.MainMenu2Fragment;
 import com.ui.main.fragment.MainMenu3Fragment;

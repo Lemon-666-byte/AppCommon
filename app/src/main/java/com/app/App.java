@@ -8,7 +8,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.CrashUtils;
 import com.blankj.utilcode.util.Utils;
-import com.hxky.common.BuildConfig;
+import com.common.BuildConfig;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.utils.LogUtils;
 

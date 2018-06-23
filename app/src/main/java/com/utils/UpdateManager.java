@@ -20,7 +20,7 @@ import com.blankj.utilcode.util.NetworkUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.Utils;
-import com.hxky.common.R;
+import com.common.R;
 import com.ui.main.bean.RespUpdate;
 
 import java.io.File;

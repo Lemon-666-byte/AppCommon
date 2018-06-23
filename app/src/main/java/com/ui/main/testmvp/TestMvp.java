@@ -3,7 +3,7 @@ package com.ui.main.testmvp;
 import android.os.Bundle;
 
 import com.base.BaseActivity;
-import com.hxky.common.R;
+import com.common.R;
 
 public class TestMvp extends BaseActivity {
 

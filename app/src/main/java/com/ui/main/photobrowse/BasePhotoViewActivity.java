@@ -7,17 +7,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.base.BaseActivity;
 import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.common.R;
 import com.constant.Config;
 import com.constant.PathConfig;
-import com.hxky.common.R;
 import com.ui.main.adapter.PhotoViewAdapter;
 import com.ui.main.bean.UploadPicture;
-import com.utils.LogUtils;
 import com.widget.HackyViewPager;
 
 import java.util.ArrayList;

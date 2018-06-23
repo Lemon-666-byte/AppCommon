@@ -13,7 +13,7 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hxky.common.R;
+import com.common.R;
 import com.widget.jumping.JumpingBeans;
 
 

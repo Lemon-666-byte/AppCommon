@@ -1,13 +1,9 @@
 package com.constant;
 
 import android.os.Environment;
-import android.support.annotation.IntDef;
 
 import com.blankj.utilcode.util.Utils;
-import com.hxky.common.BuildConfig;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
+import com.common.BuildConfig;
 
 /**
  * 常量类

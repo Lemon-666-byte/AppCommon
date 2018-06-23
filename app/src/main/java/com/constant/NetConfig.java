@@ -1,6 +1,6 @@
 package com.constant;
 
-import com.hxky.common.BuildConfig;
+import com.common.BuildConfig;
 
 /**
  * 接口请求地址

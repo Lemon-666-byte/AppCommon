@@ -2,9 +2,8 @@ package com.ui.main.adapter;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.hxky.common.R;
+import com.common.R;
 import com.ui.main.bean.CarItem;
-import com.ui.main.bean.User;
 
 /**
  * Created by yang on 2018/1/19.

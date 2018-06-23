@@ -11,7 +11,7 @@ import com.base.BaseActivity;
 import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.constant.PathConfig;
-import com.hxky.common.R;
+import com.common.R;
 import com.utils.biz.Biz;
 
 import butterknife.BindView;

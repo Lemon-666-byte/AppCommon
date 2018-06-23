@@ -1,15 +1,14 @@
 package com.ui.main.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.base.BaseFragment;
+import com.common.R;
 import com.constant.Config;
 import com.constant.PathConfig;
-import com.hxky.common.R;
 import com.ui.main.bean.UploadPicture;
 import com.utils.LogUtils;
 import com.utils.UploadMyAppUtils;

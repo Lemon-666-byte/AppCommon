@@ -12,7 +12,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.hxky.common.R;
+import com.common.R;
 
 /**
  * Description:自带删除功能的EditText

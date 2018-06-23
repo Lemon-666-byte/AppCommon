@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.hxky.common.R;
+import com.common.R;
 
 
 public class ListViewEmptyUtil {

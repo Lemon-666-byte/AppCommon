@@ -7,16 +7,14 @@ import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 
 import com.blankj.utilcode.util.ActivityUtils;
-import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.common.R;
 import com.google.gson.JsonParseException;
-import com.hxky.common.R;
 import com.net.exception.NoDataExceptionException;
 import com.net.exception.ServerErrorException;
 import com.net.exception.ServerResponseException;
 import com.net.exception.SessionKeyInvalidException;
 import com.ui.main.activity.LoginActivity;
-import com.utils.LogUtils;
 import com.utils.biz.Biz;
 
 import org.json.JSONException;

@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.OvershootInterpolator;
 
-import com.hxky.common.R;
+import com.common.R;
 
 /**
  * 【Item侧滑删除菜单】

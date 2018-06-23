@@ -1,13 +1,10 @@
 package com.ui.main.photobrowse;
 
-import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.base.BaseFragment;
 import com.blankj.utilcode.util.SizeUtils;
@@ -16,11 +13,10 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.common.R;
 import com.constant.Config;
 import com.github.chrisbanes.photoview.PhotoView;
-import com.hxky.common.R;
 import com.ui.main.bean.UploadPicture;
-import com.utils.LogUtils;
 import com.utils.imageloade.GlideApp;
 
 import butterknife.BindView;

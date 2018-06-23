@@ -3,7 +3,7 @@ package com.ui.main.fragment;
 import android.os.Bundle;
 
 import com.base.BaseFragment;
-import com.hxky.common.R;
+import com.common.R;
 import com.utils.UploadMyAppUtils;
 
 /**

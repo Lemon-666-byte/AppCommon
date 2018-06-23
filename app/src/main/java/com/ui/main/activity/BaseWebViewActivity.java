@@ -14,8 +14,8 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import com.base.BaseActivity;
+import com.common.R;
 import com.constant.Config;
-import com.hxky.common.R;
 import com.utils.LogUtils;
 
 import butterknife.BindView;

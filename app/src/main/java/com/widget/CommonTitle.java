@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.hxky.common.R;
+import com.common.R;
 
 /**
  * @Description:自定义title
