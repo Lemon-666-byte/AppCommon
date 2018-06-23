@@ -14,6 +14,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.base.BaseActivity;
 import com.blankj.utilcode.util.AppUtils;
+import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.KeyboardUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
@@ -69,6 +70,7 @@ public class LoginActivity extends BaseActivity {
             etUserName.setSelection(etUserName.getText().toString().length());
         }
         tvVersion.setText(AppUtils.getAppVersionName());
+        BarUtils.setStatusBarAlpha(this);
     }
 
     private void loadData() {
