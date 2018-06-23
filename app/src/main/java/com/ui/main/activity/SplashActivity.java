@@ -32,7 +32,7 @@ public class SplashActivity extends BaseActivity {
     /**
      * 渐变时间
      */
-    private static final int ANIMATION_TIME = 3000;
+    private static final int ANIMATION_TIME = 2500;
 
     @Override
     protected int getLayoutId() {
